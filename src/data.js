@@ -1,0 +1,80 @@
+export default [
+  {
+    id: 0,
+    title: "The artist's garden on lake Starnberg",
+    caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
+    category: "패브릭 포스터",
+    options: ["100 x 101 cm"],
+    price: 11500,
+    listPrice: null,
+    discount: null,
+    image: "./images/feature1.jpg",
+    sales: 0,
+    regiDate: 20210131
+  },
+  {
+    id: 1,
+    title: "An Afternoon on the Lake",
+    caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
+    category: "휴대폰 케이스",
+    options: ["iPhone12", "iPhone12 Pro", "iPhone12 Mini"],
+    price: 36250,
+    listPrice: 72500,
+    discount: "-50%",
+    image: "./images/feature2.jpg",
+    sales: 90,
+    regiDate: 20210221
+  },
+  {
+    id: 2,
+    title: "Summer Reflection",
+    caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
+    category: "휴대폰 케이스",
+    options: ["Galaxy S20", "Galaxy S30", "Galaxy S40", "Galaxy S50"],
+    price: 36250,
+    listPrice: 72500,
+    discount: "-50%",
+    image: "./images/feature3.jpg",
+    sales: 80,
+    regiDate: 20210111
+  },
+  {
+    id: 3,
+    title: "Luncheon at Water's Edge",
+    caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
+    category: "패브릭 포스터",
+    options: ["100 x 101 cm"],
+    price: 11500,
+    listPrice: null,
+    discount: null,
+    image: "./images/feature1.jpg",
+    sales: 50,
+    regiDate: 20210101
+  },
+  {
+    id: 4,
+    title: "Küstenlandschaft bei Menton",
+    caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
+    category: "패브릭 포스터",
+    options: ["100 x 101 cm"],
+    price: 11500,
+    listPrice: null,
+    discount: null,
+    image: "./images/feature2.jpg",
+    sales: 0,
+    regiDate: 20210121
+  },
+  {
+    id: 5,
+    title: "Junge Frau auf einer Waldlichtung (Young woman in a forest clearing)",
+    caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
+    category: "패브릭 포스터",
+    options: ["100 x 101 cm"],
+    price: 11500,
+    listPrice: null,
+    discount: null,
+    image: "./images/feature3.jpg",
+    sales: 100,
+    regiDate: 20200121
+  }
+]

@@ -1,0 +1,29 @@
+@import './_reset.scss';
+
+.detail {
+  margin-top: 100px;
+}
+img {
+  max-width: 100%;
+}
+
+@mixin 함수() {
+  border: 1px rgb(189, 189, 189) solid;
+  color: rgb(99, 99, 99);
+  background-color: #dddddd;
+
+  padding: 15px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alert {
+  @include 함수()
+}
+
+.noti-alert {
+  @extend .alert;
+  border-color:  rgb(82, 163, 255);
+  color: rgb(0, 57, 212);
+  background-color: #dbefff;
+}

@@ -1,38 +1,436 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+* {
+  font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  line-height: 1em;
+}
+
+/* grid 추가 */
+@media (min-width: 1560px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1440px;
+  }
+}
+
+.dimmed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.2);
+  text-align: center;
+  color: #ffffff;
+}
+
+.navbar {
+  padding: 1.5rem 4rem;
+}
+.navbar-brand {
+  font-family: 'Marcellus SC', serif;
+  font-size: 42px;
+  width: 114px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  margin-left: -57px;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0,0,0,1);
+  padding-right: 2.5rem;
+  padding-left: 0;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: rgba(0,0,0,0.5);
+}
+.navbar-light .navbar-nav .nav-link.segneture {
+  font-family:  'Marcellus', serif;
+  font-size: 18px;
+  padding-top: 0.4rem;
+  margin-left: -1.3rem;
+}
+.navbar-light .navbar-nav .nav-link.segneture:before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 9px;
+  vertical-align: middle;
+  background: url('./images/navlist-point.svg') center/cover no-repeat;
+  margin-right: 1rem;
+}
+.btn-shoppingBag {
+  border-radius: 50px;
+  height: 44px;
+  padding-top: 4px;
+  background: #ffffff;
+}
+.btn-shoppingBag:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+.btn-shoppingBag .count {
+  display: inline-block;
+  min-width: 23px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 2px;
+  margin-left: 8px;
+}
+
+/* 메인 키 비주얼 이미지 */
+.keyVisual {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: #000;
+  height: 100vh;
+  min-height: 825px;
+}
+.keyVisual .label {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+.keyVisual .artistName-en {
+  font-family:  'Marcellus', serif;
+  font-size: 80px;
+}
+.keyVisual .artistName-kr {
+  font-size: 40px;
+  font-weight: 400;
+}
+.keyVisual .kvImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  width: 50%;
+  height: 100%;
+  min-height: 825px;
+  background-blend-mode: overlay;
+  background: #C9E7EB url('./images/kv.jpg') center/cover no-repeat;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.keyVisual .kvImg:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -80px;
+  width: 210px;
+  height: 305px;
+  background: url('./images/graphic.svg') top left/auto 100% no-repeat;
+}
+.keyVisual .kvImg figure {
+  display: inline-block;
+  width: auto;
+  max-width: 80%;
+  margin-top: 110px;
+  height: calc(100% - 220px);
+}
+.keyVisual .kvImg figure img {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.keyVisual .kvImg figure figcaption .title {
+  display: block;
+  margin: 35px 0 8px;
+}
+.keyVisual .kvImg figure figcaption .info {
+  font-size: 13px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.keyVisual .artistStory {
+  width: 30%;
+  margin-top: 70px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.keyVisual .artistStory .flex {
   display: flex;
-  flex-direction: column;
+}
+.keyVisual .artistStory .image {
+  width: 37%;
+}
+.keyVisual .artistStory .image img {
+  width: 100%;
+}
+.keyVisual .artistStory .text {
+  width: 63%;
+  margin-left: 40px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  line-height: 1.5em;
+  text-align: justify;
+}
+
+.btn-readMore {
+  font-size: 0;
+  width: 143px;
+  height: 29px;
+  background: url('./images/btnReadMore.svg') center/143px auto no-repeat;
+  border: 0;
+}
+
+/* 스페셜 오더 */
+.specialOrder h2 {
+  font-family: 'Marcellus', serif;
+  font-size: 40px;
+  /* opacity: 0.5; */
+  margin-top: -65px;
+}
+.specialOrder .pageCaption {
+  font-size: 14px;
+}
+.specialOrder .card-columns {
+  -webkit-column-gap: 11rem;
+  -moz-column-gap: 11rem;
+  grid-column-gap: 11rem;
+  column-gap: 11rem;
+}
+.specialOrder .card-columns .card {
+  border: 0;
+  margin-bottom: 3rem;
+  overflow: visible;
+}
+.specialOrder .card-columns .card a {
+  color: #000000;
+  text-decoration: none;
+}
+.specialOrder .card-columns .card .thumbnail img {
+  width: auto;
+  max-width: 100%;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: .5s;
+  transition-property: opacity;
+  transition-duration: .5s;
+}
+.specialOrder .card-columns .card h3 {
+  margin-top: 20px;
+  width: calc(100% + 6rem);
+  font-family:  'Marcellus', serif;
+  font-size: 24px;
+}
+.specialOrder .card-columns .card .options {
+  font-size: 14px;
+  line-height: 1.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; 
+}
+
+
+/* 상품 박스 공통 */
+.productBlock .thumbnail {
+  position: relative;
+}
+.productBlock .btns {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1031;
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: .3s;
+  transition-property: opacity;
+  transition-duration: .3s;
+}
+.productBlock a:hover .thumbnail .btns {
+  opacity: 1;
+}
+.productBlock .btns button {
+  font-size: 0;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  display: block;
+  border: 0;
+}
+.productBlock .btns button:hover {
+  opacity: 0.7;
+}
+.productBlock .btns .btn-addWish {
+  margin-bottom: 8px;
+  background: #ffffff url('./images/icon-heart.svg') center/20px auto no-repeat;
+}
+.productBlock .btns .btn-addCart {
+  margin-bottom: 8px;
+  background: #ffffff url('./images/icon-add-shopping-bag.svg') top 6px center/26px auto no-repeat;
+}
+.productBlock .listPrice {
+  font-size: 13px;
+  text-decoration: line-through;
+  margin-left: 15px;
+  vertical-align: middle;
+}
+.productBlock .discount {
+  font-size: 11px;
+  color: #F23E3E;
+  border: 1px #ccc solid;
+  border-radius: 40px;
+  padding: 2px 7px 2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+
+
+
+/* 베스트, 신상 */
+.otherProducts {
+  background: #000000;
+  padding: 80px 0 100px;
+}
+.otherProducts h2 {
+  font-family:  'Marcellus', serif;
+  font-size: 40px;
+  color: #ffffff;
+  margin-bottom: 1.8rem;
+}
+.otherProducts .col {
+  background: #ffffff;
+  margin-right: 3px;
+  padding: 0 22px 35px;
+  flex-basis: 0%;
+}
+.otherProducts .col:last-child {
+  margin-right: 0;
+}
+.otherProducts a {
+  color: #000000;
+  text-decoration: none;
+}
+.otherProducts .thumbnail {
+  margin: 0 -22px 15px;
+  width: calc(100% + 44px);
+  height: 234px;
+  background-color: #272727;
+  overflow: hidden;
+  position: relative;
+}
+.otherProducts .thumbnail img {
+  width: auto;
+  max-height: 100%;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transition-property: transform;
+  -webkit-transition-duration: .5s;
+  transition-property: transform;
+  transition-duration: .5s;
+}
+.otherProducts a:hover .thumbnail img {
+  transform: translateX(-50%) translateY(-50%) scale(1.07);
+}
+.otherProducts h3 {
+  font-family: 'Marcellus', serif;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.otherProducts .options {
+  font-size: 14px;
+  line-height: 1.5em;
+}
+.otherProducts .price {
+  position: absolute;
+  bottom: 5px;
+}
+
+/* footer */
+footer .container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background: url('./images/graphic.svg') left 15px center/102px auto no-repeat;
+}
+footer .container .row {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 120px;
+}
+footer .container .brand {
+  display: block;
+  font-family: 'Marcellus SC', serif;
+  font-size: 42px;
+  margin: 15px 0;
+}
+footer .nav .nav-link {
+  color: rgba(0,0,0,1);
+  padding-right: 2.5rem;
+  padding-left: 0;
+}
+footer .nav .nav-link:hover {
+  color: rgba(0,0,0,0.5);
+}
+footer .nav .nav-link.segneture {
+  font-family:  'Marcellus', serif;
+  font-size: 18px;
+  padding-top: 0.4rem;
+  margin-left: -1.3rem;
+}
+footer .nav .nav-link.segneture:before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 9px;
+  vertical-align: middle;
+  background: url('./images/navlist-point.svg') center/cover no-repeat;
+  margin-right: 1rem;
+}
+footer .container dl {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+footer .container dl.serviceInfo dt {
+  width: 125px;
+}
+footer .container dl.serviceInfo dd {
+  width: calc(100% - 125px);
+  margin-bottom: 14px;
+}
+footer .container dl.shopInfo dt {
+  width: 80px;
+}
+footer .container dl.shopInfo dd {
+  margin-right: 30px;
+  margin-bottom: 0;
+}
+footer .container dl.shopInfo a {
+  color: #000000;
+  border-bottom: 1px #000 solid;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+
+/* All Page */
+.all {
+  padding: 10px;
+}
+.all h1 {
+  font-family: 'Marcellus', serif;
+  font-size: 130px;
+  opacity: 0.2;
+  position: fixed;
+  bottom: -15px;
+  left: 10px;
+  z-index: -1;
+}
+.all .col a {
+  color: #000000;
+}
+.all .thumbnail img {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 1024px){
+  .all .card-columns {
+    column-count: 4;
   }
 }
