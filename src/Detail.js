@@ -29,12 +29,12 @@ function Detail(props){
       <div className="container">
         <div className="row">
           <div className="col">
+            <img src={ props.images[id] }/>
             {
               alertState
               ? <CustomAlert />
               : null
             }
-            <img src={ props.images[id] }/>
           </div>
           <div className="col productInfo productBlock">
             <h4>{ product.title }</h4>

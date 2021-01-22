@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import image0 from './images/product0.jpg';
 import image1 from './images/product1.jpg';
@@ -14,6 +14,7 @@ import './App.css';
 
 import productsData from './data.js';
 import Detail from './Detail.js';
+import BtnWish from './components/btnWish.js';
 
 import { Link, Route, Switch } from 'react-router-dom';
 import { Container, Nav, Navbar, Jumbotron, Button } from 'react-bootstrap';
@@ -27,12 +28,13 @@ const feather = require('feather-icons');
 
 function App() {
   let [products, updateProducts] = useState(productsData);
-  let images = [image0, image1, image2, image3, image4, image5, 'https://codingapple1.github.io/shop/shoes3.jpg', 'https://codingapple1.github.io/shop/shoes4.jpg', 'https://codingapple1.github.io/shop/shoes5.jpg'];
-  // let images = [image0, image1, image2, 'https://codingapple1.github.io/shop/shoes3.jpg', 'https://codingapple1.github.io/shop/shoes4.jpg', 'https://codingapple1.github.io/shop/shoes5.jpg'];
+  let images = [image0, image1, image2, image3, image4, image5, 'https://codingapple1.github.io/shop/shoes3.jpg', 'https://codingapple1.github.io/shop/shoes4.jpg', 'https://codingapple1.github.io/shop/shoes5.jpg', 'https://codingapple1.github.io/shop/shoes6.jpg', 'https://codingapple1.github.io/shop/shoes7.jpg', 'https://codingapple1.github.io/shop/shoes8.jpg'];
 
+  /* 네비 장바구니 버튼 관련 */
   let iconShoppingBag = feather.icons["shopping-bag"].toSvg();
   let [shoppingBagCount, changeShoppingBagCount] = useState(0);
 
+  /* 베스트, 최신 상품 추출 */
   function sortSales(arr){
     let newArr = [...arr];
     newArr.sort((a, b)=>{ return b.sales - a.sales; });
@@ -43,6 +45,10 @@ function App() {
     newArr.sort((a, b)=>{ return b.regiDate - a.regiDate; });
     return newArr;
   }
+
+  /* 유저 위시리스트, 장바구니 데이터 */
+  let [wishList, changeWishList] = useState([3,5]);
+  let [cartList, changeCartList] = useState([4,1]);
 
   let [loadingUIBlock, changeLoadingUIBlock] = useState(false);
 
@@ -76,7 +82,7 @@ function App() {
             <div className="row row-cols-md-5 mx-lg-n5">
               {
                 products.map((product, idx)=>{
-                  return <ProductBlock key={ idx } classNm="col px-lg-5" img={ images[idx] } data={ product } />
+                  return <ProductBlock key={ idx } classNm="col px-lg-5" img={ images[idx] } data={ product } wish={ wishList } wishfn={ changeWishList } />
                 })
               }
             </div>
@@ -142,7 +148,7 @@ function App() {
             <div className="card-columns">
               {
                 products.map((product, idx)=>{
-                  return <ProductBlock key={ idx } classNm="card" img={ images[idx] } data={ product } />
+                  return <ProductBlock key={ idx } i={ idx } classNm="card" img={ images[idx] } data={ product } wish={ wishList } wishfn={ changeWishList } />
                 })
               }
             </div>
@@ -153,7 +159,7 @@ function App() {
               <div className="row no-gutters pb-4 mb-5">
               {
                 sortSales(products).slice(0, 5).map((product, idx)=>{
-                  return <ProductBlock key={ idx } classNm="col" img={ images[product.id] } data={ product } />
+                  return <ProductBlock key={ idx } classNm="col" img={ images[product.id] } data={ product } wish={ wishList } wishfn={ changeWishList } />
                 })
               }
               </div>
@@ -161,7 +167,7 @@ function App() {
               <div className="row no-gutters">
               {
                 sortRegiDate(products).slice(0, 5).map((product, idx)=>{
-                  return <ProductBlock key={ idx } classNm="col" img={ images[product.id] } data={ product } />
+                  return <ProductBlock key={ idx } classNm="col" img={ images[product.id] } data={ product } wish={ wishList } wishfn={ changeWishList } />
                 })
               }
               </div>
@@ -179,14 +185,18 @@ function ProductBlock(props){
   if(props.data.options){
     optionsTxt = props.data.options.join(', ');
   }
+  
+  let wishState = (id)=>{
+    return props.wish.includes(id);
+  }
 
   return (
     <div className={"productBlock " + props.classNm }>
-      <Link to={ "/detail/"+ props.data.id }>
+      {/* <Link to={ "/detail/"+ props.data.id }> */}
       <div className="thumbnail">
         <img src={ props.img } alt={ props.data.title } />
         <div className="btns">
-          <button className="btn-addWish">찜</button>
+          <BtnWish id={props.data.id} state={ wishState(props.data.id) } list={ props.wish } fn={ props.wishfn }/>
           <button className="btn-addCart">장바구니 추가</button>
         </div>
       </div>
@@ -205,7 +215,7 @@ function ProductBlock(props){
         : null
       }
       </p>
-      </Link>
+      {/* </Link> */}
     </div>
   )
 }

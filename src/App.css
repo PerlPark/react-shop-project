@@ -233,34 +233,22 @@
   top: 10px;
   right: 10px;
   z-index: 1031;
+}
+/* .productBlock .thumbnail .btns button {
   opacity: 0;
   -webkit-transition-property: opacity;
   -webkit-transition-duration: .3s;
   transition-property: opacity;
   transition-duration: .3s;
 }
-.productBlock a:hover .thumbnail .btns {
+.productBlock:hover .thumbnail .btns button {
   opacity: 1;
+} */
+.productBlock .thumbnail .btns button.btn-addWish {
+  margin-bottom: 5px;
 }
-.productBlock .btns button {
-  font-size: 0;
-  border-radius: 40px;
-  width: 40px;
-  height: 40px;
-  display: block;
-  border: 0;
-}
-.productBlock .btns button:hover {
-  opacity: 0.7;
-}
-.productBlock .btns .btn-addWish {
-  margin-bottom: 8px;
-  background: #ffffff url('./images/icon-heart.svg') center/20px auto no-repeat;
-}
-.productBlock .btns .btn-addCart {
-  margin-bottom: 8px;
-  background: #ffffff url('./images/icon-add-shopping-bag.svg') top 6px center/26px auto no-repeat;
-}
+
+
 .productBlock .listPrice {
   font-size: 13px;
   text-decoration: line-through;

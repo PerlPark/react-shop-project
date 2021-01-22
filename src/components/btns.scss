@@ -1,0 +1,25 @@
+@mixin CicleBtn() {
+  font-size: 0;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  display: block;
+  border: 0;
+}
+.btn-addWish {
+  @include CicleBtn();
+  background: #ffffff url('../images/icon-heart.svg') center/20px auto no-repeat;
+}
+.btn-addCart {
+  margin-bottom: 8px;
+  @include CicleBtn();
+  background: #ffffff url('../images/icon-add-shopping-bag.svg') top 6px center/26px auto no-repeat;
+}
+.btn-addWish:hover,
+.btn-addCart:hover {
+  background-color: #fff8d8;
+}
+.btn-addWish.active,
+.btn-addCart.active {
+  background-color: #ffe600;
+}
