@@ -10,6 +10,9 @@
   box-sizing: border-box;
   line-height: 1em;
 }
+img {
+  max-width: 100%;
+}
 
 /* grid 추가 */
 @media (min-width: 1560px) {
@@ -65,23 +68,31 @@
   background: url('./images/navlist-point.svg') center/cover no-repeat;
   margin-right: 1rem;
 }
-.btn-shoppingBag {
+/* 네비 우측 버튼 */
+.btn-goToWish,
+.btn-goToCart {
   border-radius: 50px;
   height: 44px;
   padding-top: 4px;
   background: #ffffff;
 }
-.btn-shoppingBag:hover {
-  background-color: rgba(255,255,255,0.5);
+.btn-goToWish:hover,
+.btn-goToCart:hover {
+  background-color: #fffb00;
 }
-.btn-shoppingBag .count {
+.btn-goToWish .count,
+.btn-goToCart .count {
   display: inline-block;
-  min-width: 23px;
+  min-width: 20px;
   text-align: center;
   vertical-align: middle;
   margin-top: 2px;
   margin-left: 8px;
 }
+.btn-goToWish {
+  margin-right: 10px;
+}
+
 
 /* 메인 키 비주얼 이미지 */
 .keyVisual {
@@ -210,14 +221,10 @@
   transition-duration: .5s;
 }
 .specialOrder .card-columns .card h3 {
-  margin-top: 20px;
   width: calc(100% + 6rem);
-  font-family:  'Marcellus', serif;
   font-size: 24px;
 }
 .specialOrder .card-columns .card .options {
-  font-size: 14px;
-  line-height: 1.5em;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden; 
@@ -228,45 +235,6 @@
 .productBlock .thumbnail {
   position: relative;
 }
-.productBlock .btns {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 1031;
-}
-/* .productBlock .thumbnail .btns button {
-  opacity: 0;
-  -webkit-transition-property: opacity;
-  -webkit-transition-duration: .3s;
-  transition-property: opacity;
-  transition-duration: .3s;
-}
-.productBlock:hover .thumbnail .btns button {
-  opacity: 1;
-} */
-.productBlock .thumbnail .btns button.btn-addWish {
-  margin-bottom: 5px;
-}
-
-
-.productBlock .listPrice {
-  font-size: 13px;
-  text-decoration: line-through;
-  margin-left: 15px;
-  vertical-align: middle;
-}
-.productBlock .discount {
-  font-size: 11px;
-  color: #F23E3E;
-  border: 1px #ccc solid;
-  border-radius: 40px;
-  padding: 2px 7px 2px;
-  margin-left: 5px;
-  vertical-align: middle;
-}
-
-
-
 
 /* 베스트, 신상 */
 .otherProducts {
@@ -398,25 +366,9 @@ footer .container dl.shopInfo a {
 
 
 /* All Page */
-.all {
-  padding: 10px;
-}
-.all h1 {
-  font-family: 'Marcellus', serif;
-  font-size: 130px;
-  opacity: 0.2;
-  position: fixed;
-  bottom: -15px;
-  left: 10px;
-  z-index: -1;
-}
 .all .col a {
   color: #000000;
 }
-.all .thumbnail img {
-  width: 100%;
-}
-
 @media (min-width: 1024px){
   .all .card-columns {
     column-count: 4;

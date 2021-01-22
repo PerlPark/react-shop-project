@@ -1,1 +1,5 @@
-$red: red;
+$pointColor: #fffb00;
+
+@mixin TransitionDuration {
+  transition-duration: .3s;
+}

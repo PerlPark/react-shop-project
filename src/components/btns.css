@@ -21,11 +21,11 @@
 
 .btn-addWish:hover,
 .btn-addCart:hover {
-  background-color: #fff8d8;
+  background-color: #fffec9;
 }
 
 .btn-addWish.active,
 .btn-addCart.active {
-  background-color: #ffe600;
+  background-color: #fffb00;
 }
 /*# sourceMappingURL=btns.css.map */

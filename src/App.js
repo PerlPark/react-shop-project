@@ -1,5 +1,17 @@
 import React, { useState, useContext } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
+import { Container, Nav, Navbar, Jumbotron, Button } from 'react-bootstrap';
+import axios from 'axios';
 
+// 페이지 임포트
+import Detail from './Detail.js';
+import All from './pages/All.js';
+
+// 컴포넌트 임포트
+import ProductBlock from './components/productBlock.js';
+
+// 리소스 임포트
+import productsData from './data.js';
 import image0 from './images/product0.jpg';
 import image1 from './images/product1.jpg';
 import image2 from './images/product2.jpg';
@@ -8,18 +20,8 @@ import image4 from './images/product4.jpg';
 import image5 from './images/product5.jpg';
 import kvImg from './images/kv.jpg';
 import artistImage from './images/artistImage.jpg';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
-import productsData from './data.js';
-import Detail from './Detail.js';
-import BtnWish from './components/btnWish.js';
-
-import { Link, Route, Switch } from 'react-router-dom';
-import { Container, Nav, Navbar, Jumbotron, Button } from 'react-bootstrap';
-import axios from 'axios';
-
 const feather = require('feather-icons');
 
 // 레퍼런스
@@ -32,6 +34,7 @@ function App() {
 
   /* 네비 장바구니 버튼 관련 */
   let iconShoppingBag = feather.icons["shopping-bag"].toSvg();
+  let iconHeart = feather.icons["heart"].toSvg();
   let [shoppingBagCount, changeShoppingBagCount] = useState(0);
 
   /* 베스트, 최신 상품 추출 */
@@ -67,8 +70,14 @@ function App() {
           </Nav>
         </Navbar.Collapse>
         <Navbar.Brand as={Link} to="/">Covet</Navbar.Brand>
+        <Link to="/wishlist">
+          <button type="button" className="btn btn-goToWish">
+            <span className="icon" dangerouslySetInnerHTML={{__html: iconHeart }}></span>
+            <span className="count">{ wishList.length }</span>
+          </button>
+        </Link>
         <Link to="/cart">
-          <button type="button" className="btn btn-shoppingBag">
+          <button type="button" className="btn btn-goToCart">
             <span className="icon" dangerouslySetInnerHTML={{__html: iconShoppingBag }}></span>
             <span className="count">{ shoppingBagCount }</span>
           </button>
@@ -77,37 +86,31 @@ function App() {
       
       <Switch>
         <Route path="/all">
-          <div className="all">
-            <h1>All</h1>
-            <div className="row row-cols-md-5 mx-lg-n5">
-              {
-                products.map((product, idx)=>{
-                  return <ProductBlock key={ idx } classNm="col px-lg-5" img={ images[idx] } data={ product } wish={ wishList } wishfn={ changeWishList } />
-                })
-              }
-            </div>
-            {
-              loadingUIBlock
-              ? <div className="dimmed"><div>로딩 중 입니다...</div></div>
-              : null
-            }
-            <button className="btn btn-primary" onClick={()=>{
-              changeLoadingUIBlock(true);
-              axios.get('https://codingapple1.github.io/shop/data2.json')
-              .then((result)=>{
-                updateProducts([...products, ...result.data]);
-                changeLoadingUIBlock(false);
-              })
-              .catch(()=>{
-                console.log('실패');
-                changeLoadingUIBlock(false);
-              });
-            }}>더보기</button>
-          </div>
+          <All data={products} images={images} wish={ wishList } wishfn={ changeWishList } />
+          {
+            loadingUIBlock
+            ? <div className="dimmed">
+                <div>로딩 중 입니다...</div>
+              </div>
+            : null
+          }
+          <button className="btn btn-primary" onClick={()=>{
+            changeLoadingUIBlock(true);
+            axios.get('https://codingapple1.github.io/shop/data2.json')
+            .then((result)=>{
+              updateProducts([...products, ...result.data]);
+              changeLoadingUIBlock(false);
+            })
+            .catch(()=>{
+              console.log('실패');
+              changeLoadingUIBlock(false);
+            });
+          }}>더보기</button>
         </Route>
 
         <Route path="/detail/:id">
-          <Detail images={ images } products={ products } 재고={ 재고 } 재고변경={ 재고변경 } />
+          <Detail images={ images } products={ products }
+                  재고={ 재고 } 재고변경={ 재고변경 } />
         </Route>
 
         <Route path="/:id">
@@ -148,7 +151,9 @@ function App() {
             <div className="card-columns">
               {
                 products.map((product, idx)=>{
-                  return <ProductBlock key={ idx } i={ idx } classNm="card" img={ images[idx] } data={ product } wish={ wishList } wishfn={ changeWishList } />
+                  return <ProductBlock key={ idx } i={ idx } classNm="card"
+                                       img={ images[idx] } data={ product }
+                                       wish={ wishList } wishfn={ changeWishList } />
                 })
               }
             </div>
@@ -159,7 +164,9 @@ function App() {
               <div className="row no-gutters pb-4 mb-5">
               {
                 sortSales(products).slice(0, 5).map((product, idx)=>{
-                  return <ProductBlock key={ idx } classNm="col" img={ images[product.id] } data={ product } wish={ wishList } wishfn={ changeWishList } />
+                  return <ProductBlock key={ idx } classNm="col"
+                                       img={ images[product.id] } data={ product }
+                                       wish={ wishList } wishfn={ changeWishList } />
                 })
               }
               </div>
@@ -167,7 +174,9 @@ function App() {
               <div className="row no-gutters">
               {
                 sortRegiDate(products).slice(0, 5).map((product, idx)=>{
-                  return <ProductBlock key={ idx } classNm="col" img={ images[product.id] } data={ product } wish={ wishList } wishfn={ changeWishList } />
+                  return <ProductBlock key={ idx } classNm="col"
+                                       img={ images[product.id] } data={ product }
+                                       wish={ wishList } wishfn={ changeWishList } />
                 })
               }
               </div>
@@ -178,46 +187,6 @@ function App() {
       <Footer />
     </div>
   );
-}
-
-function ProductBlock(props){
-  let optionsTxt;
-  if(props.data.options){
-    optionsTxt = props.data.options.join(', ');
-  }
-  
-  let wishState = (id)=>{
-    return props.wish.includes(id);
-  }
-
-  return (
-    <div className={"productBlock " + props.classNm }>
-      {/* <Link to={ "/detail/"+ props.data.id }> */}
-      <div className="thumbnail">
-        <img src={ props.img } alt={ props.data.title } />
-        <div className="btns">
-          <BtnWish id={props.data.id} state={ wishState(props.data.id) } list={ props.wish } fn={ props.wishfn }/>
-          <button className="btn-addCart">장바구니 추가</button>
-        </div>
-      </div>
-      <h3>{ props.data.title }</h3>
-      <p className="options">{ props.data.category } { optionsTxt }</p>
-      {/* <p>{ props.data.caption }</p> */}
-      <p className="price">₩{ props.data.price }
-      {
-        props.data.listPrice
-        ? <span className="listPrice">₩{ props.data.listPrice }</span>
-        : null
-      }
-      {
-        props.data.discount
-        ? <span className="discount">{ props.data.discount } Sale</span>
-        : null
-      }
-      </p>
-      {/* </Link> */}
-    </div>
-  )
 }
 
 function Footer(){

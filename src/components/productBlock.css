@@ -1,0 +1,49 @@
+.productBlock h3 {
+  font-family: 'Marcellus', serif;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.productBlock a,
+.productBlock a:hover {
+  text-decoration: none;
+}
+
+.productBlock .options {
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+.productBlock .thumbnail {
+  overflow: hidden;
+}
+
+.productBlock .listPrice {
+  font-size: 13px;
+  text-decoration: line-through;
+  margin-left: 15px;
+  vertical-align: middle;
+}
+
+.productBlock .discount {
+  font-size: 11px;
+  color: #F23E3E;
+  border: 1px #ccc solid;
+  border-radius: 40px;
+  padding: 2px 7px 2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.productBlock .btns {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1031;
+}
+
+.productBlock .btns .btn-addWish {
+  margin-bottom: 5px;
+}
+/*# sourceMappingURL=productBlock.css.map */
