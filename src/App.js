@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { Container, Nav, Navbar, Jumbotron, Button } from 'react-bootstrap';
 import axios from 'axios';
+// import { CSSTransition } from "react-transition-group";
 
 // 페이지 임포트
 import Detail from './Detail.js';
@@ -57,31 +58,44 @@ function App() {
 
   let [재고, 재고변경] = useState([1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009]);
 
+  let [navExpandedState, changeNavExpanded] = useState(null);
+  function toggleNav(){
+    if(navExpandedState === "expanded"){
+      changeNavExpanded(null);
+    } else {
+      changeNavExpanded("expanded");
+    }
+  }
+
   return (
     <div className="App">
-      <Navbar expand="lg" fixed="top">
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar expand="lg" fixed="top" collapseOnSelect="true" expanded={ navExpandedState }>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={()=>{ toggleNav() }}/>
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="mr-auto" onClick={()=>{ changeNavExpanded(null); }}>
             <Nav.Link as={Link} to="/all">All</Nav.Link>
             <Nav.Link as={Link} to="/new">New</Nav.Link>
             <Nav.Link as={Link} to="/best">Best</Nav.Link>
             <Nav.Link as={Link} to="/segneture" className="segneture">Segneture</Nav.Link>
+            <Nav.Link as={Link} to="/wish" className="mobileOnly">Wish</Nav.Link>
+            <Nav.Link as={Link} to="/cart" className="mobileOnly">Cart</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <Navbar.Brand as={Link} to="/">Covet</Navbar.Brand>
-        <Link to="/wishlist">
-          <button type="button" className="btn btn-goToWish">
-            <span className="icon" dangerouslySetInnerHTML={{__html: iconHeart }}></span>
-            <span className="count">{ wishList.length }</span>
-          </button>
-        </Link>
-        <Link to="/cart">
-          <button type="button" className="btn btn-goToCart">
-            <span className="icon" dangerouslySetInnerHTML={{__html: iconShoppingBag }}></span>
-            <span className="count">{ shoppingBagCount }</span>
-          </button>
-        </Link>
+        <Navbar.Brand as={Link} to="/" onClick={()=>{ changeNavExpanded(null); }}>Covet</Navbar.Brand>
+        <div className="btns">
+          <Link to="/wishlist">
+            <button type="button" className="btn btn-goToWish">
+              <span className="icon" dangerouslySetInnerHTML={{__html: iconHeart }}></span>
+              <span className="count">{ wishList.length }</span>
+            </button>
+          </Link>
+          <Link to="/cart">
+            <button type="button" className="btn btn-goToCart">
+              <span className="icon" dangerouslySetInnerHTML={{__html: iconShoppingBag }}></span>
+              <span className="count">{ shoppingBagCount }</span>
+            </button>
+          </Link>
+        </div>
       </Navbar>
       
       <Switch>
@@ -107,6 +121,8 @@ function App() {
             });
           }}>더보기</button>
         </Route>
+
+        <Route path="/all"></Route>
 
         <Route path="/detail/:id">
           <Detail images={ images } products={ products }
@@ -161,7 +177,7 @@ function App() {
           <div className="otherProducts">
             <div className="container">
               <h2>Best Selling</h2>
-              <div className="row no-gutters pb-4 mb-5">
+              <div className="row no-gutters pb-4 mb-5 row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
               {
                 sortSales(products).slice(0, 5).map((product, idx)=>{
                   return <ProductBlock key={ idx } classNm="col"
@@ -171,7 +187,7 @@ function App() {
               }
               </div>
               <h2>New Arrivals</h2>
-              <div className="row no-gutters">
+              <div className="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
               {
                 sortRegiDate(products).slice(0, 5).map((product, idx)=>{
                   return <ProductBlock key={ idx } classNm="col"
@@ -194,7 +210,7 @@ function Footer(){
     <footer>
       <div className="container">
         <div className="row">
-          <div className="col-7">
+          <div className="col-xxl-7 col-xl-5">
           <span className="brand">Covet</span>
           <Nav className="mr-auto">
             <Nav.Link as={Link} to="/all">All</Nav.Link>
@@ -203,7 +219,7 @@ function Footer(){
             <Nav.Link as={Link} to="/segneture" className="segneture">Segneture</Nav.Link>
           </Nav>
           </div>
-          <div className="col-5">
+          <div className="col-xxl-5 col-xl-7">
             <dl className="serviceInfo mb-4">
               <dt>고객센터 전화번호</dt>
               <dd>010-1234-5678</dd>

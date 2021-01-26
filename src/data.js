@@ -1,7 +1,7 @@
 export default [
   {
     id: 0,
-    title: "The artist's garden on lake Starnberg",
+    name: "The artist's garden on lake Starnberg",
     caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
     category: "패브릭 포스터",
     options: ["100 x 101 cm"],
@@ -14,7 +14,7 @@ export default [
   },
   {
     id: 1,
-    title: "An Afternoon on the Lake",
+    name: "An Afternoon on the Lake",
     caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
     category: "휴대폰 케이스",
     options: ["iPhone12", "iPhone12 Pro", "iPhone12 Mini"],
@@ -27,7 +27,7 @@ export default [
   },
   {
     id: 2,
-    title: "Summer Reflection",
+    name: "Summer Reflection",
     caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
     category: "휴대폰 케이스",
     options: ["Galaxy S20", "Galaxy S30", "Galaxy S40", "Galaxy S50"],
@@ -40,7 +40,7 @@ export default [
   },
   {
     id: 3,
-    title: "Luncheon at Water's Edge",
+    name: "Luncheon at Water's Edge",
     caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
     category: "패브릭 포스터",
     options: ["100 x 101 cm"],
@@ -53,7 +53,7 @@ export default [
   },
   {
     id: 4,
-    title: "Küstenlandschaft bei Menton",
+    name: "Küstenlandschaft bei Menton",
     caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
     category: "패브릭 포스터",
     options: ["100 x 101 cm"],
@@ -66,7 +66,7 @@ export default [
   },
   {
     id: 5,
-    title: "Junge Frau auf einer Waldlichtung (Young woman in a forest clearing)",
+    name: "Junge Frau auf einer Waldlichtung (Young woman in a forest clearing)",
     caption: "Oil on canvas, 63 x 76cm (24¾ x 29¾in.)",
     category: "패브릭 포스터",
     options: ["100 x 101 cm"],

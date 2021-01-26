@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import './Detail.scss';
 
@@ -37,7 +38,7 @@ function Detail(props){
             }
           </div>
           <div className="col productInfo productBlock">
-            <h4>{ product.title }</h4>
+            <h4>{ product.name }</h4>
             <p>{ product.caption }</p>
             <p>{ product.category }</p>
             <p>{ product.options }</p>
@@ -54,11 +55,18 @@ function Detail(props){
             }
             </p>
             <재고블럭 재고={ props.재고[id] }/>
-            <button className="btn btn-danger" onClick={()=>{
+            <button className="btn btn-primary" onClick={()=>{
               let copyArr = [...props.재고];
               copyArr[id] = copyArr[id] - 1;
               props.재고변경(copyArr);
             }}>주문하기</button>
+            {/* <button className="btn btn-secondary" onClick={()=>{ props.dispatch({ type: '상품추가', payload: { arr: { 
+              id: product.id,
+              name: product.name,
+              category: product.category,
+              option: product.options[0],
+              quan: 1
+             }}}) }}>장바구니</button> */}
             <button className="btn btn-outline-secondary" onClick={ ()=>{ history.push('/'); } }>뒤로가기</button>
           </div>
         </div>
@@ -90,4 +98,10 @@ function 재고블럭(props){
   )
 }
 
-export default Detail;
+function state를props화(state){
+  return {
+    cartData: state.cartDataReducer,
+    productData: state.productDataReducer
+  }
+}
+export default connect(state를props화)(Detail);
